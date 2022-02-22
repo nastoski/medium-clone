@@ -188,7 +188,7 @@ function Post({ post }: Props) {
 export default Post
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "post"]{
+  const query = `*[_type == "post"{ _id, slug {current}}]{
         _id,
         slug {
         current
@@ -205,7 +205,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
